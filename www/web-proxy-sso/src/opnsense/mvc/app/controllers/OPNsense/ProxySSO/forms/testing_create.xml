@@ -1,6 +1,6 @@
 <form>
 	<field>
-		<label>Key Table creation</label>
+		<label>Keytab creation</label>
 		<type>header</type>
 	</field>
 	<field>
@@ -16,3 +16,4 @@
 		<help>Active Directory user password (this value is not stored in configuration).</help>
 	</field>
 </form>
+

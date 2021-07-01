@@ -1,4 +1,16 @@
+/usr/local/bin/php <<EOF
+<?php
+
+require_once('script/load_phalcon.php');
+
+use \OPNsense\Core\Config;
+
+Config::getInstance()->object()->SmartSoft->ProxySSO->EnableSSO = "0";
+Config::getInstance()->save();
+EOF
+
 rm -f /usr/local/etc/squid/pre-auth/20-negotiate.auth.conf
 if [ -f /var/run/squid/squid.pid ]; then
-	configctl proxy reconfigure
+	service squid reload
 fi
+

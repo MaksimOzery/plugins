@@ -25,12 +25,6 @@
 		<help>LDAP server ping check.</help>
 	</field>
 	<field>
-		<id>dns_server</id>
-		<label>DNS Server</label>
-		<type>info</type>
-		<help>DNS server address from resolver configuration. <![CDATA[See <a href="/system_general.php">DNS settings</a>]]>.</help>
-	</field>
-	<field>
 		<id>dns_hostname_resolution</id>
 		<label>Hostname DNS lookup</label>
 		<type>info</type>
@@ -55,6 +49,12 @@
 		<help>Reverse DNS resolution for LDAP server IP.</help>
 	</field>
 	<field>
+		<id>dns_external_resolution</id>
+		<label>External DNS lookup</label>
+		<type>info</type>
+		<help>DNS IP resolution for external domains.</help>
+	</field>
+	<field>
 		<id>kerberos_config</id>
 		<label>Kerberos configuration</label>
 		<type>info</type>
@@ -67,3 +67,4 @@
 		<help>Keytab file must exist and be valid.</help>
 	</field>
 </form>
+

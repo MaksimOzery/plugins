@@ -6,6 +6,12 @@
 		<help>Enable Kerberos based Single Sign-On</help>
 	</field>
 	<field>
+		<id>ProxySSO.EnableBasic</id>
+		<label>Basic Autentification</label>
+		<type>checkbox</type>
+		<help>Enable Basic Autentification</help>
+	</field>
+	<field>
 		<id>ProxySSO.ADKerberosImplementation</id>
 		<label>AD Kerberos implementation</label>
 		<type>dropdown</type>
@@ -13,8 +19,9 @@
 	</field>
 	<field>
 		<id>ProxySSO.KerberosHostName</id>
-		<label>Kerberos Account Name Of This Host In AD</label>
+		<label>This host Kerberos account name in AD</label>
 		<type>text</type>
 		<help>Enter this computer account name to register in AD for kerberos access. Default is hostname with suffix '-K'.</help>
 	</field>
 </form>
+

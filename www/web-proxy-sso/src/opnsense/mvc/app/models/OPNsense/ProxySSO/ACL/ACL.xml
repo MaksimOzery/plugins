@@ -1,0 +1,9 @@
+<acl>
+    <page-services-proxy-proxysso>
+        <name>Services: Proxy: Single Sign-On</name>
+        <patterns>
+            <pattern>ui/proxysso/*</pattern>
+            <pattern>api/proxysso/*</pattern>
+        </patterns>
+    </page-services-proxy-proxysso>
+</acl>
