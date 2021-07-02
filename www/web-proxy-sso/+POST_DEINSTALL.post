@@ -5,7 +5,7 @@ require_once('script/load_phalcon.php');
 
 use \OPNsense\Core\Config;
 
-Config::getInstance()->object()->SmartSoft->ProxySSO->EnableSSO = "0";
+Config::getInstance()->object()->OPNsense->ProxySSO->EnableSSO = "0";
 Config::getInstance()->save();
 EOF
 
