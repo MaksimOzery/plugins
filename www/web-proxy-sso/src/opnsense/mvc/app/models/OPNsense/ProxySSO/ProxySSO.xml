@@ -1,8 +1,8 @@
 <model>
-<mount>//SmartSoft/ProxySSO</mount>
+<mount>//OPNsense/ProxySSO</mount>
 <version>1.0.0</version>
 <description>
-    the SmartSoft Web-proxy Single Sign-On plugin
+   Web-proxy Single Sign-On plugin
 </description>
 <items>
     <EnableSSO type="BooleanField">
