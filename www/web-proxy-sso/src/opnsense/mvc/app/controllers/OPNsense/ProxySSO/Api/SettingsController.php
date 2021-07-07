@@ -30,8 +30,8 @@
 
 namespace OPNsense\ProxySSO\Api;
 
-use \OPNsense\Base\ApiMutableModelControllerBase;
-use \OPNsense\Core\Config;
+use OPNsense\Base\ApiMutableModelControllerBase;
+use OPNsense\Core\Config;
 
 /**
  * Class SettingsController Handles settings related API actions for the ProxySSO

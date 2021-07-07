@@ -29,10 +29,9 @@
 
 namespace OPNsense\ProxySSO\Api;
 
-use \OPNsense\Core\Backend;
-use \OPNsense\Core\Config;
-use \OPNsense\Proxy\Proxy;
-use \OPNsense\ProxySSO\ProxySSO;
+use OPNsense\Core\Backend;
+use OPNsense\Core\Config;
+use OPNsense\ProxySSO\ProxySSO;
 
 require_once 'Net/DNS2.php';
 
