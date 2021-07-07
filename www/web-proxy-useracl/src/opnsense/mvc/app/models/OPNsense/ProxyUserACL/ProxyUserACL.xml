@@ -1,25 +1,300 @@
 <model>
-    <mount>//OPNsense/ProxyUserACL</mount>
-    <version>1.0.0</version>
+    <mount>//SmartSoft/ProxyUserACL</mount>
+    <version>1.0.7</version>
     <description>
         Group and User ACL settings
     </description>
     <items>
         <general>
-            <ACLs>
-                <ACL type="ArrayField">
-                    <Name type="TextField">
+            <Users>
+                <User type="ArrayField">
+                    <Names type="CSVListField">
                         <Required>Y</Required>
-                    </Name>
-                    <Hex type="TextField">
+                    </Names>
+                    <Hex type="CSVListField">
                         <Required>Y</Required>
                     </Hex>
-                    <Domains type="CSVListField">
+                    <Group type="OptionField">
+                        <Required>Y</Required>
+                        <default>group</default>
+                        <OptionValues>
+                            <group>Group</group>
+                            <user>User</user>
+                        </OptionValues>
+                    </Group>
+                    <Server type="AuthenticationServerField">
+                        <Required>Y</Required>
+                        <multiple>N</multiple>
+                    </Server>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </User>
+            </Users>
+            <Domains>
+                <Domain type="ArrayField">
+                    <Names type="CSVListField">
+                        <Required>Y</Required>
+                    </Names>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                    <Regexp type="BooleanField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Regexp>
+                </Domain>
+            </Domains>
+            <Agents>
+                <Agent type="ArrayField">
+                    <Names type="CSVListField">
+                        <Required>Y</Required>
+                    </Names>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </Agent>
+            </Agents>
+            <Times>
+                <Time type="ArrayField">
+                    <Days type="OptionField">
+                        <Required>N</Required>
+                        <Multiple>Y</Multiple>
+                        <OptionValues>
+                            <S>Sunday</S>
+                            <M>Monday</M>
+                            <T>Tuesday</T>
+                            <W>Wednesday</W>
+                            <H>Thursday</H>
+                            <F>Friday</F>
+                            <A>Saturday</A>
+                        </OptionValues>
+                    </Days>
+                    <Start type="TextField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Start>
+                    <End type="TextField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </End>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </Time>
+            </Times>
+            <Mimes>
+                <Mime type="ArrayField">
+                    <Names type="CSVListField">
+                        <Required>Y</Required>
+                    </Names>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </Mime>
+            </Mimes>
+            <Srcs>
+                <Src type="ArrayField">
+                    <Names type="CSVListField">
+                        <mask>/^((((\d){1,3}\.){3}(\d){1,3}(\/(\d){1,3})?|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\/(\d){1,3})?)(,|$))*$/</mask>
+                        <Required>Y</Required>
+                    </Names>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </Src>
+            </Srcs>
+            <Dsts>
+                <Dst type="ArrayField">
+                    <Names type="CSVListField">
+                        <mask>/^((((\d){1,3}\.){3}(\d){1,3}(\/(\d){1,3})?|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\/(\d){1,3})?)(,|$))*$/</mask>
+                        <Required>Y</Required>
+                    </Names>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </Dst>
+            </Dsts>
+            <Arps>
+                <Arp type="ArrayField">
+                    <Names type="CSVListField">
+                        <mask>/^((([0-9a-fA-F]{2}:??){5}([0-9a-fA-F]{2}))(,|$))*$/</mask>
+                        <Required>Y</Required>
+                    </Names>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </Arp>
+            </Arps>
+            <remoteACLs>
+                <remoteACL type="ArrayField">
+                    <filename type="TextField">
+                        <Required>Y</Required>
+                        <Mask>/^[a-zA-Z0-9_]{1,245}\.?[a-zA-z0-9_]{1,10}$/</Mask>
+                        <ValidationMessage>The filename may only contain letters, digits and one dot (not required).</ValidationMessage>
+                        <Constraints>
+                            <check001>
+                                <ValidationMessage>Filename should be unique</ValidationMessage>
+                                <type>UniqueConstraint</type>
+                            </check001>
+                        </Constraints>
+                    </filename>
+                    <id type="AutoNumberField">
+                        <Required>Y</Required>
+                    </id>
+                    <url type="UrlField">
+                        <Required>Y</Required>
+                        <ValidationMessage>This does not look like a valid url.</ValidationMessage>
+                    </url>
+                    <username type="TextField">
+                        <Required>N</Required>
+                        <mask>/^([\t\n\v\f\r 0-9a-zA-Z.,_\x{00A0}-\x{FFFF}]){1,255}$/u</mask>
+                    </username>
+                    <password type="TextField">
+                        <Required>N</Required>
+                        <mask>/^([\t\n\v\f\r 0-9a-zA-Z.,_\x{00A0}-\x{FFFF}]){1,255}$/u</mask>
+                    </password>
+                    <sslNoVerify type="BooleanField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </sslNoVerify>
+                    <Type type="OptionField">
+                        <Required>Y</Required>
+                        <Multiple>N</Multiple>
+                        <OptionValues>
+                            <dstdomain>Domanis</dstdomain>
+                            <url_regex>URLs</url_regex>
+                            <dst>IPs</dst>
+                        </OptionValues>
+                    </Type>
+                    <Description type="TextField">
+                        <Required>Y</Required>
+                    </Description>
+                </remoteACL>
+            </remoteACLs>
+            <HTTPAccesses>
+                <HTTPAccess type="ArrayField">
+                    <enabled type="BooleanField">
+                        <default>1</default>
+                        <Required>Y</Required>
+                    </enabled>
+                    <Users type="CSVListField">
+                    </Users>
+                    <Domains type="ModelRelationField">
+                        <Model>
+                            <Domains>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Domains.Domain</items>
+                                <display>Description</display>
+                            </Domains>
+                        </Model>
+                        <ValidationMessage>Related domain not found</ValidationMessage>
                         <Required>N</Required>
                     </Domains>
+                    <Agents type="ModelRelationField">
+                        <Model>
+                            <Agents>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Agents.Agent</items>
+                                <display>Description</display>
+                            </Agents>
+                        </Model>
+                        <ValidationMessage>Related agent not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Agents>
+                    <Times type="ModelRelationField">
+                        <Model>
+                            <Times>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Times.Time</items>
+                                <display>Description</display>
+                            </Times>
+                        </Model>
+                        <ValidationMessage>Related time not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Times>
+                    <Mimes type="ModelRelationField">
+                        <Model>
+                            <Mimes>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Mimes.Mime</items>
+                                <display>Description</display>
+                            </Mimes>
+                        </Model>
+                        <ValidationMessage>Related mime not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Mimes>
+                    <Srcs type="ModelRelationField">
+                        <Model>
+                            <Srcs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Srcs.Src</items>
+                                <display>Description</display>
+                            </Srcs>
+                        </Model>
+                        <ValidationMessage>Related src not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Srcs>
+                    <Dsts type="ModelRelationField">
+                        <Model>
+                            <Dsts>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Dsts.Dst</items>
+                                <display>Description</display>
+                            </Dsts>
+                        </Model>
+                        <ValidationMessage>Related dst not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Dsts>
+                    <Arps type="ModelRelationField">
+                        <Model>
+                            <Arps>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Arps.Arp</items>
+                                <display>Description</display>
+                            </Arps>
+                        </Model>
+                        <ValidationMessage>Related arp not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Arps>
+                    <remoteACLs type="ModelRelationField">
+                        <Model>
+                            <remoteACLs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.remoteACLs.remoteACL</items>
+                                <display>Description</display>
+                            </remoteACLs>
+                        </Model>
+                        <ValidationMessage>Related remoteACLs not found</ValidationMessage>
+                        <Required>N</Required>
+                    </remoteACLs>
                     <Black type="OptionField">
                         <Required>Y</Required>
-                        <default>Black</default>
+                        <default>deny</default>
                         <OptionValues>
                             <deny>Black</deny>
                             <allow>White</allow>
@@ -29,16 +304,457 @@
                         <default>0</default>
                         <Required>Y</Required>
                     </Priority>
-                    <Group type="OptionField">
+                </HTTPAccess>
+            </HTTPAccesses>
+            <SSLs>
+                <SSL type="ArrayField">
+                    <enabled type="BooleanField">
+                        <default>1</default>
                         <Required>Y</Required>
-                        <default>group</default>
+                    </enabled>
+                    <Users type="CSVListField">
+                    </Users>
+                    <Domains type="ModelRelationField">
+                        <Model>
+                            <Domains>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Domains.Domain</items>
+                                <display>Description</display>
+                            </Domains>
+                        </Model>
+                        <ValidationMessage>Related domain not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Domains>
+                    <Agents type="ModelRelationField">
+                        <Model>
+                            <Agents>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Agents.Agent</items>
+                                <display>Description</display>
+                            </Agents>
+                        </Model>
+                        <ValidationMessage>Related agent not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Agents>
+                    <Times type="ModelRelationField">
+                        <Model>
+                            <Times>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Times.Time</items>
+                                <display>Description</display>
+                            </Times>
+                        </Model>
+                        <ValidationMessage>Related time not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Times>
+                    <Mimes type="ModelRelationField">
+                        <Model>
+                            <Mimes>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Mimes.Mime</items>
+                                <display>Description</display>
+                            </Mimes>
+                        </Model>
+                        <ValidationMessage>Related mime not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Mimes>
+                    <Srcs type="ModelRelationField">
+                        <Model>
+                            <Srcs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Srcs.Src</items>
+                                <display>Description</display>
+                            </Srcs>
+                        </Model>
+                        <ValidationMessage>Related src not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Srcs>
+                    <Dsts type="ModelRelationField">
+                        <Model>
+                            <Dsts>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Dsts.Dst</items>
+                                <display>Description</display>
+                            </Dsts>
+                        </Model>
+                        <ValidationMessage>Related dst not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Dsts>
+                    <Arps type="ModelRelationField">
+                        <Model>
+                            <Arps>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Arps.Arp</items>
+                                <display>Description</display>
+                            </Arps>
+                        </Model>
+                        <ValidationMessage>Related arp not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Arps>
+                    <remoteACLs type="ModelRelationField">
+                        <Model>
+                            <remoteACLs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.remoteACLs.remoteACL</items>
+                                <display>Description</display>
+                            </remoteACLs>
+                        </Model>
+                        <ValidationMessage>Related remoteACLs not found</ValidationMessage>
+                        <Required>N</Required>
+                    </remoteACLs>
+                </SSL>
+            </SSLs>
+            <ICAPs>
+                <ICAP type="ArrayField">
+                    <enabled type="BooleanField">
+                        <default>1</default>
+                        <Required>Y</Required>
+                    </enabled>
+                    <Users type="CSVListField">
+                    </Users>
+                    <Domains type="ModelRelationField">
+                        <Model>
+                            <Domains>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Domains.Domain</items>
+                                <display>Description</display>
+                            </Domains>
+                        </Model>
+                        <ValidationMessage>Related domain not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Domains>
+                    <Agents type="ModelRelationField">
+                        <Model>
+                            <Agents>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Agents.Agent</items>
+                                <display>Description</display>
+                            </Agents>
+                        </Model>
+                        <ValidationMessage>Related agent not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Agents>
+                    <Times type="ModelRelationField">
+                        <Model>
+                            <Times>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Times.Time</items>
+                                <display>Description</display>
+                            </Times>
+                        </Model>
+                        <ValidationMessage>Related time not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Times>
+                    <Mimes type="ModelRelationField">
+                        <Model>
+                            <Mimes>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Mimes.Mime</items>
+                                <display>Description</display>
+                            </Mimes>
+                        </Model>
+                        <ValidationMessage>Related mime not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Mimes>
+                    <Srcs type="ModelRelationField">
+                        <Model>
+                            <Srcs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Srcs.Src</items>
+                                <display>Description</display>
+                            </Srcs>
+                        </Model>
+                        <ValidationMessage>Related src not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Srcs>
+                    <Dsts type="ModelRelationField">
+                        <Model>
+                            <Dsts>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Dsts.Dst</items>
+                                <display>Description</display>
+                            </Dsts>
+                        </Model>
+                        <ValidationMessage>Related dst not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Dsts>
+                    <Arps type="ModelRelationField">
+                        <Model>
+                            <Arps>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Arps.Arp</items>
+                                <display>Description</display>
+                            </Arps>
+                        </Model>
+                        <ValidationMessage>Related arp not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Arps>
+                    <remoteACLs type="ModelRelationField">
+                        <Model>
+                            <remoteACLs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.remoteACLs.remoteACL</items>
+                                <display>Description</display>
+                            </remoteACLs>
+                        </Model>
+                        <ValidationMessage>Related remoteACLs not found</ValidationMessage>
+                        <Required>N</Required>
+                    </remoteACLs>
+                    <Black type="OptionField">
+                        <Required>Y</Required>
+                        <default>deny</default>
                         <OptionValues>
-                            <group>Group</group>
-                            <user>User</user>
+                            <deny>Black</deny>
+                            <allow>White</allow>
                         </OptionValues>
-                    </Group>
-                </ACL>
-            </ACLs>
+                    </Black>
+                    <Priority type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Priority>
+                </ICAP>
+            </ICAPs>
+            <Outgoings>
+                <Outgoing type="ArrayField">
+                    <enabled type="BooleanField">
+                        <default>1</default>
+                        <Required>Y</Required>
+                    </enabled>
+                    <Users type="CSVListField">
+                    </Users>
+                    <Domains type="ModelRelationField">
+                        <Model>
+                            <Domains>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Domains.Domain</items>
+                                <display>Description</display>
+                            </Domains>
+                        </Model>
+                        <ValidationMessage>Related domain not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Domains>
+                    <Agents type="ModelRelationField">
+                        <Model>
+                            <Agents>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Agents.Agent</items>
+                                <display>Description</display>
+                            </Agents>
+                        </Model>
+                        <ValidationMessage>Related agent not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Agents>
+                    <Times type="ModelRelationField">
+                        <Model>
+                            <Times>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Times.Time</items>
+                                <display>Description</display>
+                            </Times>
+                        </Model>
+                        <ValidationMessage>Related time not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Times>
+                    <Mimes type="ModelRelationField">
+                        <Model>
+                            <Mimes>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Mimes.Mime</items>
+                                <display>Description</display>
+                            </Mimes>
+                        </Model>
+                        <ValidationMessage>Related mime not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Mimes>
+                    <Srcs type="ModelRelationField">
+                        <Model>
+                            <Srcs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Srcs.Src</items>
+                                <display>Description</display>
+                            </Srcs>
+                        </Model>
+                        <ValidationMessage>Related src not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Srcs>
+                    <Dsts type="ModelRelationField">
+                        <Model>
+                            <Dsts>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Dsts.Dst</items>
+                                <display>Description</display>
+                            </Dsts>
+                        </Model>
+                        <ValidationMessage>Related dst not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Dsts>
+                    <Arps type="ModelRelationField">
+                        <Model>
+                            <Arps>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Arps.Arp</items>
+                                <display>Description</display>
+                            </Arps>
+                        </Model>
+                        <ValidationMessage>Related arp not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Arps>
+                    <remoteACLs type="ModelRelationField">
+                        <Model>
+                            <remoteACLs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.remoteACLs.remoteACL</items>
+                                <display>Description</display>
+                            </remoteACLs>
+                        </Model>
+                        <ValidationMessage>Related remoteACLs not found</ValidationMessage>
+                        <Required>N</Required>
+                    </remoteACLs>
+                    <IPAddr type="NetworkField">
+                        <NetMaskRequired>N</NetMaskRequired>
+                        <Required>Y</Required>
+                        <ValidationMessage>Specify a valid IP address.</ValidationMessage>
+                    </IPAddr>
+                    <Priority type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Priority>
+                </Outgoing>
+            </Outgoings>
+            <Delays>
+                <Delay type="ArrayField">
+                    <enabled type="BooleanField">
+                        <default>1</default>
+                        <Required>Y</Required>
+                    </enabled>
+                    <Class type="OptionField">
+                        <Required>Y</Required>
+                        <default>one</default>
+                        <OptionValues>
+                            <one>1</one>
+                            <two>2</two>
+                            <three>3</three>
+                            <four>4</four>
+                        </OptionValues>
+                    </Class>
+                    <Aggregate type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Aggregate>
+                    <Individual type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Individual>
+                    <Network type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Network>
+                    <User type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </User>
+                    <Tagrate type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Tagrate>
+                    <Users type="CSVListField">
+                    </Users>
+                    <Domains type="ModelRelationField">
+                        <Model>
+                            <Domains>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Domains.Domain</items>
+                                <display>Description</display>
+                            </Domains>
+                        </Model>
+                        <ValidationMessage>Related domain not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Domains>
+                    <Agents type="ModelRelationField">
+                        <Model>
+                            <Agents>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Agents.Agent</items>
+                                <display>Description</display>
+                            </Agents>
+                        </Model>
+                        <ValidationMessage>Related agent not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Agents>
+                    <Times type="ModelRelationField">
+                        <Model>
+                            <Times>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Times.Time</items>
+                                <display>Description</display>
+                            </Times>
+                        </Model>
+                        <ValidationMessage>Related time not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Times>
+                    <NetPolice type="CSVListField">
+                    </NetPolice>
+                    <Mimes type="ModelRelationField">
+                        <Model>
+                            <Mimes>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Mimes.Mime</items>
+                                <display>Description</display>
+                            </Mimes>
+                        </Model>
+                        <ValidationMessage>Related mime not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Mimes>
+                    <Srcs type="ModelRelationField">
+                        <Model>
+                            <Srcs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Srcs.Src</items>
+                                <display>Description</display>
+                            </Srcs>
+                        </Model>
+                        <ValidationMessage>Related src not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Srcs>
+                    <Dsts type="ModelRelationField">
+                        <Model>
+                            <Dsts>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Dsts.Dst</items>
+                                <display>Description</display>
+                            </Dsts>
+                        </Model>
+                        <ValidationMessage>Related dst not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Dsts>
+                    <Arps type="ModelRelationField">
+                        <Model>
+                            <Arps>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.Arps.Arp</items>
+                                <display>Description</display>
+                            </Arps>
+                        </Model>
+                        <ValidationMessage>Related arp not found</ValidationMessage>
+                        <Required>N</Required>
+                    </Arps>
+                    <remoteACLs type="ModelRelationField">
+                        <Model>
+                            <remoteACLs>
+                                <source>SmartSoft.ProxyUserACL.ProxyUserACL</source>
+                                <items>general.remoteACLs.remoteACL</items>
+                                <display>Description</display>
+                            </remoteACLs>
+                        </Model>
+                        <ValidationMessage>Related remoteACLs not found</ValidationMessage>
+                        <Required>N</Required>
+                    </remoteACLs>
+                    <Priority type="IntegerField">
+                        <default>0</default>
+                        <Required>Y</Required>
+                    </Priority>
+                </Delay>
+            </Delays>
         </general>
     </items>
 </model>

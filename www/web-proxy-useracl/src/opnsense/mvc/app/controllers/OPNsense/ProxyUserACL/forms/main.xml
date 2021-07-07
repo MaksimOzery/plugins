@@ -1,0 +1,36 @@
+<form>
+    <tab id="lists" description="Lists">
+        <subtab id="users" description="Users and gruops">
+        </subtab>
+        <subtab id="arps" description="MAC addresses">
+        </subtab>
+        <subtab id="srcs" description="Sources nets">
+        </subtab>
+        <subtab id="dsts" description="Destination nets">
+        </subtab>
+        <subtab id="domains" description="Domains">
+        </subtab>
+        <subtab id="agents" description="Browser/user-agents">
+        </subtab>
+        <subtab id="mimes" description="Mime types">
+        </subtab>
+        <subtab id="times" description="Schedules">
+        </subtab>
+        <subtab id="remote" description="Remote Access Control Lists">
+        </subtab>
+    </tab>
+    <tab id="rules" description="Rules">
+        <subtab id="httpaccesses" description="HTTP access">
+        </subtab>
+        <subtab id="ssls" description="SSL Bump">
+        </subtab>
+        <subtab id="icaps" description="ICAP">
+        </subtab>
+        <subtab id="outgoing" description="TCP Outgoing Address">
+        </subtab>
+        <subtab id="delays" description="Delay pools">
+        </subtab>
+    </tab>
+
+    <activetab>users</activetab>
+</form>

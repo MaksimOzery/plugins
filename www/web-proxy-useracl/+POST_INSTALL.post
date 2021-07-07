@@ -1,4 +1,8 @@
-/usr/local/opnsense/scripts/OPNsense/ProxyUserACL/reload.php
-if [ -f /var/run/squid/squid.pid ]; then
-	service squid reload
+if /usr/local/etc/rc.d/configd status > /dev/null; then
+    /usr/local/opnsense/scripts/proxy/fetchACLs.py
 fi
+if [ -f /var/run/squid/squid.pid ]; then
+	echo -n "Reloading proxy..."
+	configctl proxy reload
+fi
+

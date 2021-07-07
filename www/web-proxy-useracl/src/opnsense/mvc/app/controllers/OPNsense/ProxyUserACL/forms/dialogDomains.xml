@@ -1,0 +1,31 @@
+<form>
+    <field>
+        <id>Domain.Description</id>
+        <label>Description</label>
+        <type>text</type>
+    </field>
+    <field>
+        <id>Domain.Regexp</id>
+        <label>Regexp</label>
+        <type>checkbox</type>
+        <help>Enable regular expression for domains. Regular expressions are slower.</help>
+    </field>
+    <field>
+        <id>Domain.Names</id>
+        <label>Domains</label>
+        <type>select_multiple</type>
+        <style>tokenize</style>
+        <allownew>true</allownew>
+        <help><![CDATA[Destination domains.<br/>
+        You may use a regular expression, use a comma or press Enter for new item.<br/>
+        <div class="alert alert-info">
+            <b>Examples:</b><br/>
+            <b class="text-primary">mydomain.com</b> -> matches on <b>*.mydomain.com</b><br/>
+            <b class="text-primary">^https?:\/\/([a-zA-Z]+)\.mydomain\.</b> -> matches on <b>http(s)://textONLY.mydomain.*</b><br/>
+            <b class="text-primary">\.gif$</b> -> matches on <b>\*.gif</b> but not on <b class="text-danger">\*.gif\test</b><br/>
+            <b class="text-primary">\[0-9]+\.gif$</b> -> matches on <b>\123.gif</b> but not on <b class="text-danger">\test.gif</b><br/>
+        </div>
+        <div class="text-info">You can also paste a comma separated list into this field.</div>]]></help>
+        <hint>Regular expressions are allowed.</hint>
+    </field>
+</form>

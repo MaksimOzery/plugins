@@ -1,1 +1,3 @@
-Allow users and group-based policies in the web proxy.
+With this plugin you can assign different filtering settings 
+for users and groups. This can be either local users or groups, 
+or domain users and groups.
