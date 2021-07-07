@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2017 Smart-Soft
+# Copyright (C) 2017-2021 Smart-Soft
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
