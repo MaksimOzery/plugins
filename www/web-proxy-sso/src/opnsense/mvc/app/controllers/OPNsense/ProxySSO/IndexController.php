@@ -28,7 +28,7 @@
  
 namespace OPNsense\ProxySSO;
 
-use \OPNsense\Core\Config;
+use OPNsense\Core\Config;
 use OPNsense\Proxy\Proxy;
 
 class IndexController extends \OPNsense\Base\IndexController

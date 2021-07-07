@@ -1,4 +1,2 @@
-Authentication via Kerberos allows the Single Sign On (SSO) mechanism for domain
-users. In this mode, the user authenticates once, at the time of login in
-domain and in the future, when authenticating on a proxy server, login and password
-will not be asked.
+Allow to use the web proxy with Single Sign-On against an
+Active Directory instead of using a bundled authentication.
