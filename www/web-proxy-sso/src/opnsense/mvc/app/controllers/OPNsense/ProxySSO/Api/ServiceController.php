@@ -154,7 +154,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
 
         // DNS
         $nameservers = preg_grep('/nameserver/', file('/etc/resolv.conf'));
-        $dns_servers = [];
+        $dns_servers = array();
         foreach ($nameservers as $record) {
             $parts = explode(' ', $record);
             $dns_servers[] = trim($parts[1]);
@@ -298,7 +298,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
         exec('cat /etc/krb5.conf', $output);
         $kerberos_config["dump"] = implode("\n", $output);
 
-        $keytab = [];
+        $keytab = array();
         $keytab["status"] = file_exists('/usr/local/etc/squid/squid.keytab') ? "ok" : "failure";
         if (!file_exists('/usr/local/etc/squid/squid.keytab')) {
             $keytab["message"] = gettext('File /usr/local/etc/squid/squid.keytab does not exists.');
