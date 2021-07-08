@@ -11,5 +11,5 @@ EOF
 
 rm -f /usr/local/etc/squid/pre-auth/20-negotiate.auth.conf
 if [ -f /var/run/squid/squid.pid ]; then
-	service squid reload
+	configctl proxy reconfigure
 fi

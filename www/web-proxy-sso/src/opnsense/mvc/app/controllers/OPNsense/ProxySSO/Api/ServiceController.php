@@ -48,7 +48,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
         $backend = new Backend();
 
         $response = $backend->configdRun("proxysso showkeytab");
-        return array("response" => $response, "status" => "ok");
+        return array("response" => $response,"status" => "ok");
     }
 
     /**
@@ -60,7 +60,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
         $backend = new Backend();
 
         $response = $backend->configdRun("proxysso deletekeytab");
-        return array("response" => $response, "status" => "ok");
+        return array("response" => $response,"status" => "ok");
     }
 
     /**
@@ -87,10 +87,10 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
 
             $response = $backend->configdRun("proxysso createkeytab {$hostname} {$domain} {$kerbname} {$winver} {$username} {$pass} {$realm}");
             parent::reconfigureAction();
-            return array("response" => $response, "status" => "ok");
+            return array("response" => $response,"status" => "ok");
         }
 
-        return array("response" => []);
+        return array("response" => array());
     }
 
     /**
@@ -112,10 +112,10 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
             }
 
             $response = $backend->configdRun("proxysso testkerblogin {$username} {$pass} {$fqdn}");
-            return array("response" => $response, "status" => "ok");
+            return array("response" => $response,"status" => "ok");
         }
 
-        return array("response" => []);
+        return array("response" => array());
     }
 
     /**
@@ -136,7 +136,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
         }
         $ldap_ip = null;
         $ldap_fqdn = null;
-        $ldap_server_ping = ["status" => "failure"];
+        $ldap_server_ping = [ "status" => "failure"];
         if (isset($ldap_server) && !empty($ldap_server->host)) {
             if (filter_var($ldap_server->host, FILTER_VALIDATE_IP)) {
                 $ldap_ip = $ldap_server->host->__toString();
@@ -145,10 +145,10 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
             }
 
             $host_esc = escapeshellarg("{$ldap_server->host}");
-            $output = ["# ping -c 1 -W 1 {$host_esc}"];
+            $output = array("# ping -c 1 -W 1 {$host_esc}");
             $retval = 0;
             exec("ping -c 1 -W 1 {$host_esc}", $output, $retval);
-            $ldap_server_ping = ["status" => $retval == 0 ? "ok" : "failure"];
+            $ldap_server_ping = [ "status" => $retval == 0 ? "ok" : "failure"];
             $ldap_server_ping["dump"] = implode("\n", $output);
         }
 
@@ -210,7 +210,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
 
         // DNS: LDAP server
         ldap_dns:
-        $dns_ldap_reverse_resolution = ["status" => "failure", "message" => gettext('LDAP server IP reverse lookup error. ')];
+        $dns_ldap_reverse_resolution = array( "status" => "failure" );
         if (empty($ldap_ip)) {
             $dns_ldap_reverse_resolution["message"] = gettext("Unknown LDAP server IP.");
         } else {
@@ -237,7 +237,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
             }
         }
 
-        $dns_ldap_resolution = ["status" => "failure", "message" => gettext('LDAP server DNS lookup error. ')];
+        $dns_ldap_resolution = array( "status" => "failure" );
         if (empty($ldap_fqdn)) {
             $dns_ldap_resolution["message"] = gettext('Unknown LDAP server FQDN.');
         } else {
@@ -291,7 +291,7 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
             $kerberos_config["message"] = gettext('File /etc/krb5.conf does not exists.');
         } else {
             if (empty($config_valid)) {
-                $kerberos_config["message"] = gettext('Kerberos configuration file has invalid content');
+                $kerberos_config["message"] = gettext('SSO is not enabled or kerberos configuration file has invalid content');
             }
         }
         $output = ["# cat /etc/krb5.conf"];
@@ -306,19 +306,29 @@ class ServiceController extends \OPNsense\Proxy\Api\ServiceController
         $keytab["dump"] = $backend->configdRun("proxysso showkeytab");
 
 
-        return [
-            "hostname_" . $index => $hostname,
-            "ldap_server_config_" . $index => isset($ldap_server) ? $ldap_server->name->__toString() : "",
-            "ldap_server_" . $index => isset($ldap_server) ? $ldap_server->host->__toString() : "",
-            "ldap_server_ping_" . $index => $ldap_server_ping,
-            "dns_hostname_resolution_" . $index => $dns_hostname_resolution,
-            "dns_hostname_reverse_resolution_" . $index => $dns_hostname_reverse_resolution,
-            "dns_ldap_resolution_" . $index => $dns_ldap_resolution,
-            "dns_ldap_reverse_resolution_" . $index => $dns_ldap_reverse_resolution,
-            "dns_external_resolution_" . $index => $dns_external_resolution,
-            "kerberos_config_" . $index => $kerberos_config,
-            "keytab_" . $index => $keytab,
-        ];
+        // and two more DNS check
+        if (!empty($ldap_ip) && !in_array($ldap_ip, $dns_servers)) {
+            $dns_server["status"] = "failure";
+            $dns_server["message"] = gettext("LDAP server is not in DNS servers list.");
+        } elseif (in_array("127.0.0.1", $dns_servers) || in_array("::1", $dns_servers)) {
+            $dns_server["status"] = "failure";
+            $dns_server["message"] = gettext("Do not set localhost as DNS server.");
+        }
+
+
+        return  [
+                    "hostname" => $hostname,
+                    "ldap_server_config" => isset($ldap_server) ? $ldap_server->name->__toString() : array("status" => "failure", "message" => gettext("LDAP server is not set in Web Proxy - Authentication Settings")),
+                    "ldap_server" => isset($ldap_server) ? $ldap_server->host->__toString() : "",
+                    "ldap_server_ping" => $ldap_server_ping,
+                    "dns_server" => $dns_server,
+                    "dns_hostname_resolution" => $dns_hostname_resolution,
+                    "dns_hostname_reverse_resolution" => $dns_hostname_reverse_resolution,
+                    "dns_ldap_resolution" => $dns_ldap_resolution,
+                    "dns_ldap_reverse_resolution" => $dns_ldap_reverse_resolution,
+                    "kerberos_config" => $kerberos_config,
+                    "keytab" => $keytab,
+                ];
     }
 
     private function getDomain($index)

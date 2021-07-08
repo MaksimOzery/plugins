@@ -24,12 +24,9 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- */ 
- 
-namespace OPNsense\ProxySSO;
+ */
 
-use OPNsense\Core\Config;
-use OPNsense\Proxy\Proxy;
+namespace OPNsense\ProxySSO;
 
 class IndexController extends \OPNsense\Base\IndexController
 {
@@ -75,4 +72,3 @@ class IndexController extends \OPNsense\Base\IndexController
         $this->view->ldaps = $ldaps;
     }
 }
-

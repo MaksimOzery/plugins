@@ -96,15 +96,15 @@
         });
 
         // link save button to API set action
-        $("#applyAct").click(function () {
+        $("#applyAct").click(function(){
             $("#responseMsg").html('');
             $("#applyAct_progress").addClass("fa fa-spinner fa-pulse");
             $("#applyAct").addClass("disabled");
-            saveFormToEndpoint(url = "/api/proxysso/settings/set", formid = 'frm_GeneralSettings', callback_ok = function () {
+            saveFormToEndpoint(url="/api/proxysso/settings/set",formid='frm_GeneralSettings',callback_ok=function(){
 
-                ajaxCall(url = "/api/proxy/service/reconfigure", sendData = {}, callback = function (data, status) {
-                    if (data.status == "ok") {
-                        $("#responseMsg").html("{{ lang._('Proxy reconfigured') }}");
+                ajaxCall(url="/api/proxy/service/reconfigure", sendData={},callback=function(data,status) {
+                    if(data.status == "ok") {
+                        $("#responseMsg").html("{{lang._('Proxy reconfigured')}}");
                         $("#responseMsg").removeClass("hidden");
                     }
 

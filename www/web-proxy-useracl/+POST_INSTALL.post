@@ -2,7 +2,6 @@ if /usr/local/etc/rc.d/configd status > /dev/null; then
     /usr/local/opnsense/scripts/proxy/fetchACLs.py
 fi
 if [ -f /var/run/squid/squid.pid ]; then
-	echo -n "Reloading proxy..."
-	configctl proxy reload
+	service squid reload
 fi
 
