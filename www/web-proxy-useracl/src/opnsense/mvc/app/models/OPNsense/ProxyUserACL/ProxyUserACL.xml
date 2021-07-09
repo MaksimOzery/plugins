@@ -1,6 +1,6 @@
 <model>
     <mount>//OPNsense/ProxyUserACL</mount>
-    <version>1.0.0</version>
+    <version>1.0.7</version>
     <description>
         Group and User ACL settings
     </description>
@@ -237,6 +237,8 @@
                         <ValidationMessage>Related time not found</ValidationMessage>
                         <Required>N</Required>
                     </Times>
+                    <NetPolice type="CSVListField">
+                    </NetPolice>
                     <Mimes type="ModelRelationField">
                         <Model>
                             <Mimes>
@@ -347,6 +349,8 @@
                         <ValidationMessage>Related time not found</ValidationMessage>
                         <Required>N</Required>
                     </Times>
+                    <NetPolice type="CSVListField">
+                    </NetPolice>
                     <Mimes type="ModelRelationField">
                         <Model>
                             <Mimes>
@@ -445,6 +449,8 @@
                         <ValidationMessage>Related time not found</ValidationMessage>
                         <Required>N</Required>
                     </Times>
+                    <NetPolice type="CSVListField">
+                    </NetPolice>
                     <Mimes type="ModelRelationField">
                         <Model>
                             <Mimes>
@@ -555,6 +561,8 @@
                         <ValidationMessage>Related time not found</ValidationMessage>
                         <Required>N</Required>
                     </Times>
+                    <NetPolice type="CSVListField">
+                    </NetPolice>
                     <Mimes type="ModelRelationField">
                         <Model>
                             <Mimes>
